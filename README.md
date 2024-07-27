@@ -19,29 +19,41 @@ made up of questions which can be of the type Open, Range or Decimal.
 - Open-ended questions are answered with free-form text
 - Range-type questions are answered with an integer between two values (min and max)
 - Decimal questions are answered with an unrestricted decimal number
+
+
 Surveys may also contain groups of questions, these receive a name and are composed of a
 series of questions.
 It is of interest to know the numerical value of a whole survey, that is, the sum of the values of
 all the responses. If the question is open type, its value is 0.
 The surveys belong to a single center. The therapist may send surveys to patients when the
 following conditions are met:
+
+
 - The survey belongs to the same center as the therapist
 - The patient belongs to the same center and is assigned to the therapist
+
+  
 
 3. **Attributes and format restrictions:**
 
 ***Center attributes:***
+
 - Code
 - Address
+  
 ***Therapist attributes:***
 - Name (required)
 - Telephone (optional)
 - email (the format must be validated)
+
+
 ***Patient attributes:***
 - patient code (free string, maximum 10 characters)
 - telephone (optional)
 - email (required)
 - name (required)
+
+  
 ***Format restrictions:***
 - Center code: 5 alphanumeric characters. Mandatory and unique field
 - Patient code: Alphanumeric of max
