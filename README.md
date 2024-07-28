@@ -71,19 +71,152 @@ Este proyecto es una aplicación para gestionar encuestas y preguntas asociadas.
    ```bash
    node -v
    npm -v
+   ```
 2. **MySQL:** Necesitarás [MySQL](https://dev.mysql.com/downloads/mysql/) instalado y en funcionamiento. Asegúrate de que el servicio MySQL esté corriendo y que puedas acceder a él.
 
 ## Clonar el Repositorio
 
 Primero, clona el repositorio desde GitHub:
-   ```bash
-   git clone https://github.com/tuusuario/nora-professional.git
-   cd nora-professional
 
+```bash
+git clone https://github.com/tuusuario/nora-professional.git
+cd nora-professional
+```
+## Instalar Dependencias
 
-## Instalar Dependencias:
 Instala las dependencias de Node.js y Sequelize:
-   ```bash
-   npm install
 
-## 
+```bash
+npm install
+```
+## Configurar Sequelize
+
+### Inicializar Sequelize
+
+Si aún no has inicializado Sequelize en tu proyecto, ejecuta el siguiente comando para configurar el archivo `sequelize-cli`:
+
+```bash
+npx sequelize-cli init
+```
+Esto generará los siguientes directorios:
+
+- `config/`: Para los archivos de configuración de la base de datos.
+- `models/`: Para los modelos de Sequelize.
+- `migrations/`: Para los archivos de migración.
+- `seeders/`: Para los archivos de semillas de datos.
+
+### Configurar `config/config.json`
+
+Abre el archivo `config/config.json` y ajusta la configuración para conectar con tu base de datos MySQL:
+
+```json
+{
+  "development": {
+    "username": "root",
+    "password": "your_password",
+    "database": "nora_professional",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
+```
+Asegúrate de reemplazar **"your_password"** con la contraseña de tu base de datos.
+
+### Ejecutar Migraciones
+
+Si tienes migraciones pendientes, ejecútalas con:
+
+```bash
+npx sequelize-cli db:migrate
+```
+### Insertar Datos Iniciales
+
+Para insertar datos iniciales en la base de datos, ejecuta el siguiente comando:
+
+```bash
+npx ts-node src/db/init.ts
+```
+Este comando ejecutará el script **init.ts** ubicado en src/db para insertar datos iniciales en la base de datos.
+
+### Iniciar el Servidor
+
+Para iniciar la aplicación, ejecuta:
+
+```bash
+npm start
+```
+Esto iniciará el servidor en el puerto 3000 por defecto. Puedes acceder a la API en **[http://localhost:3000.]**
+
+### Uso de la API
+
+Puedes probar los siguientes endpoints utilizando [Postman](https://www.postman.com/) o cualquier cliente HTTP:
+Esta es la API publicada por mi con la creacion de la encuesta y el calculo del valor total de una encuesta: [https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440](https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440)
+En caso de querer crearla por vuestra parte aqui teneis los pasos a seguir:
+
+#### Crear Encuesta
+
+- **Método:** POST
+- **URL:** `/api/surveys`
+
+**Cuerpo de la Solicitud (JSON):**
+
+```json
+{
+  "nombre": "Encuesta de Satisfacción",
+  "codigoCentro": "ABC12",
+  "preguntas": [
+    {
+      "nombre": "Grupo 1",
+      "preguntas": [
+        { "tipo": "texto", "contenido": "¿Cómo calificaría nuestro servicio?", "respuesta": "4" },
+        { "tipo": "texto", "contenido": "¿Recomendaría nuestro servicio?", "respuesta": "5" }
+      ]
+    }
+  ]
+}
+```
+#### Calcular Valor Total de una Encuesta
+
+- **Método:** GET
+- **URL:** `/api/surveys/:encuestaId/value`
+
+**Ejemplo:** `http://localhost:3000/api/surveys/1/value`
+
+Donde `:encuestaId` es el ID de la encuesta cuya valoración quieres calcular.
+
+---
+
+### Contribuciones
+
+Si deseas contribuir al proyecto, por favor sigue los siguientes pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama:
+   ```bash
+   git checkout -b feature/tu-feature
+   ```
+3. Realiza tus cambios y realiza commits:
+   ```bash
+   git commit -am 'Add nueva característica'
+   ```
+4. Empuja tus cambios a tu repositorio:
+   ```bash
+   git push origin feature/tu-feature
+   ```
+5. Crea una solicitud de extracción (pull request).
+
+
