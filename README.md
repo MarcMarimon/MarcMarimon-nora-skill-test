@@ -155,7 +155,7 @@ To start the application, run:
 ```bash
 npm start
 ```
-This will start the server on port 3000 by default. You can access the API at **[http://localhost:3000.]**
+This will start the server on port 3000 by default. You can access the API at **http://localhost:3000** .
 
 
 ### API Usage
