@@ -60,3 +60,30 @@ following conditions are met:
 - Center code: 5 alphanumeric characters. Mandatory and unique field
 - Patient code: Alphanumeric of max
 - Email: correct email format
+
+# Nora Professional
+
+Este proyecto es una aplicación para gestionar encuestas y preguntas asociadas. A continuación, se detallan los pasos necesarios para configurar el proyecto en tu entorno local.
+
+## Requisitos Previos
+
+1. **Node.js y npm:** Asegúrate de tener [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com/) instalados. Puedes verificar su instalación con los siguientes comandos:
+   ```bash
+   node -v
+   npm -v
+2. **MySQL:** Necesitarás [MySQL](https://dev.mysql.com/downloads/mysql/) instalado y en funcionamiento. Asegúrate de que el servicio MySQL esté corriendo y que puedas acceder a él.
+
+## Clonar el Repositorio
+
+Primero, clona el repositorio desde GitHub:
+   ```bash
+   git clone https://github.com/tuusuario/nora-professional.git
+   cd nora-professional
+
+
+## Instalar Dependencias:
+Instala las dependencias de Node.js y Sequelize:
+   ```bash
+   npm install
+
+## 
