@@ -159,7 +159,7 @@ This will start the server on port 3000 by default. You can access the API at **
 
 
 ### API Usage
-You can test the following endpoints using [Postman](https://www.postman.com/)  or any HTTP client:
+You can test the following endpoints using [Postman](https://www.postman.com/)  or any HTTP client:  
 This is the API published by me for creating a survey and calculating the total value of a survey: [https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440](https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440)  
 If you want to create it on your own, here are the steps to follow:
 
