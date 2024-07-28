@@ -63,51 +63,49 @@ following conditions are met:
 
 # Nora Professional
 
-Este proyecto es una aplicación para gestionar encuestas y preguntas asociadas. A continuación, se detallan los pasos necesarios para configurar el proyecto en tu entorno local.
+This project is an application for managing surveys and associated questions. Below are the steps to set up the project in your local environment.
 
-## Requisitos Previos
+## Prerequisites
 
-1. **Node.js y npm:** Asegúrate de tener [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com/) instalados. Puedes verificar su instalación con los siguientes comandos:
+1. **Node.js and npm:** Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed. You can check their installation with the following commands:
    ```bash
    node -v
    npm -v
    ```
-2. **MySQL:** Necesitarás [MySQL](https://dev.mysql.com/downloads/mysql/) instalado y en funcionamiento. Asegúrate de que el servicio MySQL esté corriendo y que puedas acceder a él.
+2. **MySQL:** You will need [MySQL](https://dev.mysql.com/downloads/mysql/) installed and running. Ensure that the MySQL service is running and that you can access it.
+   
+## Clone the Repository
 
-## Clonar el Repositorio
-
-Primero, clona el repositorio desde GitHub:
+First, clone the repository from GitHub:
 
 ```bash
-git clone https://github.com/tuusuario/nora-professional.git
+git clone https://github.com/yourusername/nora-professional.git
 cd nora-professional
 ```
-## Instalar Dependencias
+## Install Dependencies
 
-Instala las dependencias de Node.js y Sequelize:
-
+Install the Node.js and Sequelize dependencies:
 ```bash
 npm install
 ```
-## Configurar Sequelize
+## Configure Sequelize
 
-### Inicializar Sequelize
+### Initialize Sequelize
 
-Si aún no has inicializado Sequelize en tu proyecto, ejecuta el siguiente comando para configurar el archivo `sequelize-cli`:
-
+If you have not initialized Sequelize in your project yet, run the following command to set up the **`sequelize-cli`** configuration:
 ```bash
 npx sequelize-cli init
 ```
-Esto generará los siguientes directorios:
+This will generate the following directories:
 
-- `config/`: Para los archivos de configuración de la base de datos.
-- `models/`: Para los modelos de Sequelize.
-- `migrations/`: Para los archivos de migración.
-- `seeders/`: Para los archivos de semillas de datos.
+- `config/`: For database configuration files.
+- `models/`: For Sequelize models.
+- `migrations/`: For migration files.
+- `seeders/`:  For data seed files.
 
-### Configurar `config/config.json`
+### Configure config/config.json`
 
-Abre el archivo `config/config.json` y ajusta la configuración para conectar con tu base de datos MySQL:
+Open the config/config.json file and adjust the settings to connect to your MySQL database:
 
 ```json
 {
@@ -134,89 +132,88 @@ Abre el archivo `config/config.json` y ajusta la configuración para conectar co
   }
 }
 ```
-Asegúrate de reemplazar **"your_password"** con la contraseña de tu base de datos.
+Make sure to replace **"your_password"** with your database password.
 
-### Ejecutar Migraciones
+### Run Migrations
 
-Si tienes migraciones pendientes, ejecútalas con:
-
+If you have pending migrations, run them with:
 ```bash
 npx sequelize-cli db:migrate
 ```
-### Insertar Datos Iniciales
+### Insert Initial Data
 
-Para insertar datos iniciales en la base de datos, ejecuta el siguiente comando:
-
+To insert initial data into the database, run the following command:
 ```bash
 npx ts-node src/db/init.ts
 ```
-Este comando ejecutará el script **init.ts** ubicado en src/db para insertar datos iniciales en la base de datos.
+This command will execute the **init.ts** script located in **`src/db`** to insert initial data into the database.
 
-### Iniciar el Servidor
+### Start the Server
 
-Para iniciar la aplicación, ejecuta:
+To start the application, run:
 
 ```bash
 npm start
 ```
-Esto iniciará el servidor en el puerto 3000 por defecto. Puedes acceder a la API en **[http://localhost:3000.]**
+This will start the server on port 3000 by default. You can access the API at **[http://localhost:3000.]**
 
-### Uso de la API
 
-Puedes probar los siguientes endpoints utilizando [Postman](https://www.postman.com/) o cualquier cliente HTTP:  
-Esta es la API publicada por mi con la creacion de la encuesta y el calculo del valor total de una encuesta: [https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440](https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440)  
-En caso de querer crearla por vuestra parte aqui teneis los pasos a seguir:
+### API Usage
+You can test the following endpoints using [Postman](https://www.postman.com/)  or any HTTP client:
+This is the API published by me for creating a survey and calculating the total value of a survey: [https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440](https://documenter.getpostman.com/view/32893977/2sA3kaCJmq#ea42bc1b-f1fa-4962-9b87-3888af695440)  
+If you want to create it on your own, here are the steps to follow:
 
-#### Crear Encuesta
 
-- **Método:** POST
+#### Create Survey
+
+- **Method:** POST
 - **URL:** `/api/surveys`
 
-**Cuerpo de la Solicitud (JSON):**
+**Request Body (JSON):**
 
 ```json
 {
-  "nombre": "Encuesta de Satisfacción",
-  "codigoCentro": "ABC12",
-  "preguntas": [
+  "name": "Customer Satisfaction Survey",
+  "centerCode": "ABC12",
+  "questions": [
     {
-      "nombre": "Grupo 1",
-      "preguntas": [
-        { "tipo": "texto", "contenido": "¿Cómo calificaría nuestro servicio?", "respuesta": "4" },
-        { "tipo": "texto", "contenido": "¿Recomendaría nuestro servicio?", "respuesta": "5" }
+      "name": "Group 1",
+      "questions": [
+        { "type": "text", "content": "How would you rate our service?", "response": "4" },
+        { "type": "text", "content": "Would you recommend our service?", "response": "5" }
       ]
     }
   ]
 }
 ```
-#### Calcular Valor Total de una Encuesta
+#### Calculate Total Value of a Survey
 
-- **Método:** GET
-- **URL:** `/api/surveys/:encuestaId/value`
+- **Method:** GET
+- **URL:** `/api/surveys/:surveyId/value`
 
-**Ejemplo:** `http://localhost:3000/api/surveys/1/value`
+**Example:** `http://localhost:3000/api/surveys/1/value`
 
-Donde `:encuestaId` es el ID de la encuesta cuya valoración quieres calcular.
+Where `:surveyId` is the ID of the survey you want to calculate the value for.
 
 ---
 
-### Contribuciones
+### Contributions
 
-Si deseas contribuir al proyecto, por favor sigue los siguientes pasos:
+If you would like to contribute to the project, please follow these steps:
 
-1. Haz un fork del repositorio.
-2. Crea una nueva rama:
+1. Fork the repository.
+2. Create a new branch:
    ```bash
-   git checkout -b feature/tu-feature
+   git checkout -b feature/your-feature
    ```
-3. Realiza tus cambios y realiza commits:
+3. Make your changes and commit:
    ```bash
-   git commit -am 'Add nueva característica'
+   git commit -am 'Add new feature'
    ```
-4. Empuja tus cambios a tu repositorio:
+4. Push your changes to your repository:
    ```bash
-   git push origin feature/tu-feature
+   git push origin feature/your-feature
    ```
-5. Crea una solicitud de extracción (pull request).
+5. Create a pull request.
 
 
