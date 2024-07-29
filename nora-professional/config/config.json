@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "Admin",
+    "password": "SuperAdmin123!",
+    "database": "nora_professional",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "Admin",
+    "password": "SuperAdmin123!",
+    "database": "nora_professional",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "Admin",
+    "password": "SuperAdmin123!",
+    "database": "nora_professional",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
